@@ -8,4 +8,17 @@ module.exports = {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
     },
+    resolve: {
+        alias: {
+          config$: './configs/app-config.js',
+          react: './vendor/react-master',
+        },
+        extensions: ['.js', '.jsx'],
+        modules: [
+          'node_modules',
+          'bower_components',
+          'shared',
+          '/shared/vendor/modules',
+        ],
+      },
 };
