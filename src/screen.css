@@ -1,0 +1,14 @@
+button{
+    height: 30px;
+    width: 30px;
+    background-color: #fff;
+    border: solid 1px #000;
+    margin: 5px;
+    cursor: pointer;
+}
+.has-ship{
+    background-color: tomato;
+}
+.attacked{
+    background-color: aqua;
+}

@@ -1,8 +1,5 @@
-import gameboard from "./gameboard.js";
+import container from "./screenControll";
 let content = document.querySelector('#content');
 
-let board = gameboard();
 
-console.log(board.getBoard());
-
-content.innerHTML = 'hello';
+content.appendChild(container);
