@@ -7,7 +7,7 @@ const ship = (length) => {
         return hits;
     }
     let isSunk = () => {
-        return hits > length
+        return hits === length
     }
     let getHits = () => hits;
 

@@ -3,12 +3,14 @@ const gameboard = () => {
     let board = [];
     let rows = 7;
     let columns = 7;
-    let spaces = 47;
+    let shipCount = 1;
+    let shipsArr = [ship(3), ship(2), ship(1), ship(1),ship(1)];
 
     for(let i = 0; i < rows; i++){
         board[i] = [];
         for(let j = 0; j < columns; j++ )
         board[i][j] = {ship: false, attacked: false};
+
     };
 
     const attackBoard = (x, y) => {
@@ -20,24 +22,41 @@ const gameboard = () => {
         }
         else if(board[x][y].ship === true && board[x][y].attacked == false){
             board[x][y].attacked = true;
+            board[x][y].newShip.hit();
+            currentScore(board[x][y].newShip.isSunk());
         }
         else{
         board[x][y].attacked = true;
+
         }
     }
 
     const getBoard = () => board;
 
-    const placeShip = (x, y) => {
-        let shipSize = Math.floor(Math.random() * 4) + 1;
-        let newShip = ship(shipSize);
-        let i = 0;
-        while(i < shipSize){
-        board[x][y++] = {ship: true, attacked: false, newShip}
-        i++;
-        }
+    const placeShip = (fakeX, fakeY) => {
+        shipsArr.forEach( s => {
+            let x = Math.floor(Math.random() * 4) + 1;
+            let y = Math.floor(Math.random() * 4) + 1;
+            let j = 0;
+            let shipSize = s.getLength();
+            while(j < shipSize){
+            board[x][y++] = {ship: true, attacked: false, s}
+            j++;
+          }
+        })
+      }
 
+
+    const currentScore = (ship) => {
+
+        if(ship === true){
+            shipCount--;
+        }
+        if(shipCount === 0){
+            console.log('game over')
+        }
     }
+
 
 
     return {
@@ -45,6 +64,6 @@ const gameboard = () => {
         attackBoard,
         placeShip
     }
-};
+}
 
 export default gameboard;
